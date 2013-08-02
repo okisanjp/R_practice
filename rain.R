@@ -16,7 +16,35 @@ data[5, c(1, 5)]
 # 下記は最高気温が最も高かった日の日付と最高気温
 data[data[5] == max(data[5]),c(1,5)]
 
-# data[5]の中央値をとってみる
+#
+# ある列の中央値
+#
+
+# data[5]（最高気温）の中央値をとってみる
 median(data[5]) #うまくいかない
-# 型を見てみる
-mode(data[5])
+# 型を見てみるとlist？
+mode(data)
+# とりあえず data[5] を maxtemp として入れなおしてみる
+maxtemp <- data[5]
+mode(maxtemp) # やっぱりlist
+# ベクトルや行列でないとmedianの引数に出来ない？
+# lapply を使えばリストに対して関数を適用できる
+lapply(data[5], median) # 最高気温の中央値が得られた
+
+#
+# 平均気温と日照時間の関係
+#
+
+# 日付、平均気温、 降水量 を rain として作る
+rain <- c(data[1],data[2],data[11])
+# listのままだとplot出来ないのでunlistメソッドでnumericにする
+rain_day <- unlist(rain[1])
+rain_temp <- unlist(rain[2])
+rain_rain <- unlist(rain[3])
+# x:日付 y:気温と降水量
+plot.new()
+plot(rain_day, rain_temp, ylim=c(0,100))
+lines(rain_temp, col="red")
+par(new=T)
+plot(rain_day, rain_rain, ylim=c(0,100), main="DAY : TEMP & RAIN", xlab="DAY", ylab="")
+lines(rain_rain, col="blue")
