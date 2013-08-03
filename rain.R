@@ -5,7 +5,7 @@
 #
 
 # 予め用意したデータを読み込む
-data <- read.csv('weather_tokyo.csv')
+data <- read.csv('./data/weather_tokyo.csv')
 # サマリを見てどの列に何のデータが入っているか把握
 summary(data)
 # 取り敢えず最高気温の最も最大値（5列目が最高気温なので）
