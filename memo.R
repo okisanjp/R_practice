@@ -60,3 +60,7 @@ var(y)
 # 標準偏差
 sd(x)
 sd(y)
+# 一括で表示
+summary(x)
+summary(y)
+
